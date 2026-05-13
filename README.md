@@ -2,6 +2,112 @@
 # Automated Prediction & Calibration Framework
 ## Next-Day Maximum Temperature Prediction for Bengaluru, India
 
+## Worflow Diagram
+
+    %% ─────────────────────────────────────────────
+    %% PROJECT TITLE
+    %% ─────────────────────────────────────────────
+    A[" Bengaluru Weather Dataset<br/>1000 Days (May 2023 – Feb 2026)<br/>Variables: Tmax, Tmin, Tmean, Humidity, Precipitation, Wind"]
+
+    %% ─────────────────────────────────────────────
+    %% DATA INGESTION
+    %% ─────────────────────────────────────────────
+    A --> B[" Data Ingestion<br/>Load CSV using pandas<br/>Parse dates and sort chronologically"]
+
+    %% ─────────────────────────────────────────────
+    %% EDA
+    %% ─────────────────────────────────────────────
+    B --> C[" Exploratory Data Analysis (EDA)<br/>• Temperature over time<br/>• Daily precipitation<br/>• Monthly boxplots<br/>• Correlation matrix"]
+
+    %% ─────────────────────────────────────────────
+    %% SEASONAL ANALYSIS
+    %% ─────────────────────────────────────────────
+    C --> D[" Seasonal Climate Analysis<br/>• Monthly temperature range<br/>• Rainfall vs humidity trends"]
+
+    %% ─────────────────────────────────────────────
+    %% FEATURE ENGINEERING
+    %% ─────────────────────────────────────────────
+    D --> E["🛠️ Feature Engineering<br/>19 Features Created"]
+
+    E --> E1["Lag Features<br/>t-1 and t-2 values"]
+    E --> E2["Rolling Features<br/>7-day mean, std, cumulative rainfall"]
+    E --> E3["Calendar Features<br/>Month, Day-of-Year, Monsoon Flag"]
+
+    %% ─────────────────────────────────────────────
+    %% TARGET
+    %% ─────────────────────────────────────────────
+    E --> F[" Target Variable<br/>Next-Day Maximum Temperature"]
+
+    %% ─────────────────────────────────────────────
+    %% SPLIT
+    %% ─────────────────────────────────────────────
+    F --> G[" Chronological Train/Test Split<br/>80% Train (794 rows)<br/>20% Test (199 rows)"]
+
+    %% ─────────────────────────────────────────────
+    %% BASELINE MODEL
+    %% ─────────────────────────────────────────────
+    G --> H[" Baseline Model<br/>Random Forest Regressor"]
+
+    %% ─────────────────────────────────────────────
+    %% CALIBRATION
+    %% ─────────────────────────────────────────────
+    H --> I[" Calibration using GridSearchCV<br/>24 Hyperparameter Combinations<br/>5-Fold Cross Validation"]
+
+    I --> I1["Best Parameters<br/>n_estimators = 200<br/>max_depth = 20<br/>min_samples_split = 2<br/>max_features = sqrt"]
+
+    %% ─────────────────────────────────────────────
+    %% EVALUATION
+    %% ─────────────────────────────────────────────
+    I1 --> J["Model Evaluation"]
+
+    J --> J1["RMSE ≈ 1.49°C"]
+    J --> J2["R² ≈ 0.664"]
+    J --> J3["Actual vs Predicted Plot"]
+    J --> J4["Scatter Plot"]
+
+    %% ─────────────────────────────────────────────
+    %% FEATURE IMPORTANCE
+    %% ─────────────────────────────────────────────
+    J --> K[" Feature Importance Analysis"]
+
+    K --> K1["Top Predictors<br/>1. temp_roll7_mean<br/>2. temp_mean_C<br/>3. temp_mean_C_lag2"]
+
+    %% ─────────────────────────────────────────────
+    %% SPATIAL HEATMAP
+    %% ─────────────────────────────────────────────
+    K --> L[" BBMP Ward-Level Heat Map<br/>243 Bengaluru Wards<br/>Synthetic Spatial Temperature Gradient"]
+
+    %% ─────────────────────────────────────────────
+    %% REPORT GENERATION
+    %% ─────────────────────────────────────────────
+    L --> M["Automated Report Generation"]
+
+    M --> M1["01_eda.png"]
+    M --> M2["02_seasonal.png"]
+    M --> M3["03_prediction.png"]
+    M --> M4["04_feature_importance.png"]
+    M --> M5["05_bbmp_heatmap.png"]
+    M --> M6["06_results_table.png"]
+    M --> M7["Final PDF Report"]
+
+    %% ─────────────────────────────────────────────
+    %% FINAL OUTPUT
+    %% ─────────────────────────────────────────────
+    M7 --> N[" Final Deliverable<br/>Automated Prediction & Calibration Framework"]
+
+    %% ─────────────────────────────────────────────
+    %% STYLING
+    %% ─────────────────────────────────────────────
+    classDef main fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000;
+    classDef process fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#000;
+    classDef metric fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#000;
+
+    class A,N main;
+    class B,C,D,E,F,G,H,I,I1,J,K,L,M process;
+    class M1,M2,M3,M4,M5,M6,M7 output;
+    class J1,J2,J3,J4,K1 metric;
+
 This project presents an end-to-end machine learning pipeline for predicting the **next-day maximum temperature** in Bengaluru, Karnataka, using 1000 days of historical weather data.
 
 The framework follows a structured workflow:
