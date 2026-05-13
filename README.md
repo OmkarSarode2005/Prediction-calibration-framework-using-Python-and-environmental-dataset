@@ -221,7 +221,6 @@ The pipeline automatically creates:
 - `04_feature_importance.png` — Feature Importance
 - `05_bbmp_heatmap.png` — BBMP Ward-Level Heat Map
 - `06_results_table.png` — Performance Summary Table
-- `Bengaluru_Temperature_Prediction_Report_Final.pdf`
 
 ---
 
