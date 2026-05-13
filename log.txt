@@ -1,0 +1,4 @@
+Warning 6: Normalized/laundered field name: 'KGISWardCode' to 'KGISWardCo'
+Warning 6: Normalized/laundered field name: 'LGD_WardCode' to 'LGD_WardCo'
+Warning 6: Normalized/laundered field name: 'KGISWardName' to 'KGISWardNa'
+Warning 6: Normalized/laundered field name: 'KGISTownCode' to 'KGISTownCo'
