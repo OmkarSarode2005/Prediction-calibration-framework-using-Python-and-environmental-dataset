@@ -3,6 +3,9 @@
 ## Next-Day Maximum Temperature Prediction for Bengaluru, India
 
 ## Worflow Diagram
+## Workflow Diagram
+
+```mermaid
 flowchart TD
 
 A["Bengaluru Weather Dataset
@@ -14,14 +17,14 @@ Load CSV using pandas
 Parse dates and sort chronologically"]
 
 B --> C["Exploratory Data Analysis
-• Temperature over time
-• Daily precipitation
-• Monthly boxplots
-• Correlation matrix"]
+Temperature over time
+Daily precipitation
+Monthly boxplots
+Correlation matrix"]
 
 C --> D["Seasonal Climate Analysis
-• Monthly temperature range
-• Rainfall vs humidity trends"]
+Monthly temperature range
+Rainfall vs humidity trends"]
 
 D --> E["Feature Engineering
 19 Features Created"]
@@ -87,6 +90,8 @@ M --> M7["Final PDF Report"]
 
 M7 --> N["Final Deliverable
 Automated Prediction & Calibration Framework"]
+```
+
 This project presents an end-to-end machine learning pipeline for predicting the **next-day maximum temperature** in Bengaluru, Karnataka, using 1000 days of historical weather data.
 
 The framework follows a structured workflow:
