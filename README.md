@@ -180,7 +180,6 @@ Prediction-calibration-framework-using-Python-and-environmental-dataset/
 ├── 04_feature_importance.png
 ├── 05_bbmp_heatmap.png
 ├── 06_results_table.png
-├── Bengaluru_Temperature_Prediction_Report_Final.pdf
 └── README.md
 ```
 
