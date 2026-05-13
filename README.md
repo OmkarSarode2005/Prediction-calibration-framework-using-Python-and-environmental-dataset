@@ -3,28 +3,27 @@
 ## Next-Day Maximum Temperature Prediction for Bengaluru, India
 
 ## Worflow Diagram
-
 flowchart TD
 
     %% ─────────────────────────────────────────────
     %% PROJECT TITLE
     %% ─────────────────────────────────────────────
-    A[" Bengaluru Weather Dataset<br/>1000 Days (May 2023 – Feb 2026)<br/>Variables: Tmax, Tmin, Tmean, Humidity, Precipitation, Wind"]
+    A["🌍 Bengaluru Weather Dataset<br/>1000 Days (May 2023 – Feb 2026)<br/>Variables: Tmax, Tmin, Tmean, Humidity, Precipitation, Wind"]
 
     %% ─────────────────────────────────────────────
     %% DATA INGESTION
     %% ─────────────────────────────────────────────
-    A --> B[" Data Ingestion<br/>Load CSV using pandas<br/>Parse dates and sort chronologically"]
+    A --> B["📥 Data Ingestion<br/>Load CSV using pandas<br/>Parse dates and sort chronologically"]
 
     %% ─────────────────────────────────────────────
     %% EDA
     %% ─────────────────────────────────────────────
-    B --> C[" Exploratory Data Analysis (EDA)<br/>• Temperature over time<br/>• Daily precipitation<br/>• Monthly boxplots<br/>• Correlation matrix"]
+    B --> C["📊 Exploratory Data Analysis (EDA)<br/>• Temperature over time<br/>• Daily precipitation<br/>• Monthly boxplots<br/>• Correlation matrix"]
 
     %% ─────────────────────────────────────────────
     %% SEASONAL ANALYSIS
     %% ─────────────────────────────────────────────
-    C --> D[" Seasonal Climate Analysis<br/>• Monthly temperature range<br/>• Rainfall vs humidity trends"]
+    C --> D["🌦️ Seasonal Climate Analysis<br/>• Monthly temperature range<br/>• Rainfall vs humidity trends"]
 
     %% ─────────────────────────────────────────────
     %% FEATURE ENGINEERING
@@ -38,29 +37,29 @@ flowchart TD
     %% ─────────────────────────────────────────────
     %% TARGET
     %% ─────────────────────────────────────────────
-    E --> F[" Target Variable<br/>Next-Day Maximum Temperature"]
+    E --> F["🎯 Target Variable<br/>Next-Day Maximum Temperature"]
 
     %% ─────────────────────────────────────────────
     %% SPLIT
     %% ─────────────────────────────────────────────
-    F --> G[" Chronological Train/Test Split<br/>80% Train (794 rows)<br/>20% Test (199 rows)"]
+    F --> G["✂️ Chronological Train/Test Split<br/>80% Train (794 rows)<br/>20% Test (199 rows)"]
 
     %% ─────────────────────────────────────────────
     %% BASELINE MODEL
     %% ─────────────────────────────────────────────
-    G --> H[" Baseline Model<br/>Random Forest Regressor"]
+    G --> H["🌲 Baseline Model<br/>Random Forest Regressor"]
 
     %% ─────────────────────────────────────────────
     %% CALIBRATION
     %% ─────────────────────────────────────────────
-    H --> I[" Calibration using GridSearchCV<br/>24 Hyperparameter Combinations<br/>5-Fold Cross Validation"]
+    H --> I["⚙️ Calibration using GridSearchCV<br/>24 Hyperparameter Combinations<br/>5-Fold Cross Validation"]
 
     I --> I1["Best Parameters<br/>n_estimators = 200<br/>max_depth = 20<br/>min_samples_split = 2<br/>max_features = sqrt"]
 
     %% ─────────────────────────────────────────────
     %% EVALUATION
     %% ─────────────────────────────────────────────
-    I1 --> J["Model Evaluation"]
+    I1 --> J["📈 Model Evaluation"]
 
     J --> J1["RMSE ≈ 1.49°C"]
     J --> J2["R² ≈ 0.664"]
@@ -70,19 +69,19 @@ flowchart TD
     %% ─────────────────────────────────────────────
     %% FEATURE IMPORTANCE
     %% ─────────────────────────────────────────────
-    J --> K[" Feature Importance Analysis"]
+    J --> K["🏆 Feature Importance Analysis"]
 
     K --> K1["Top Predictors<br/>1. temp_roll7_mean<br/>2. temp_mean_C<br/>3. temp_mean_C_lag2"]
 
     %% ─────────────────────────────────────────────
     %% SPATIAL HEATMAP
     %% ─────────────────────────────────────────────
-    K --> L[" BBMP Ward-Level Heat Map<br/>243 Bengaluru Wards<br/>Synthetic Spatial Temperature Gradient"]
+    K --> L["🗺️ BBMP Ward-Level Heat Map<br/>243 Bengaluru Wards<br/>Synthetic Spatial Temperature Gradient"]
 
     %% ─────────────────────────────────────────────
     %% REPORT GENERATION
     %% ─────────────────────────────────────────────
-    L --> M["Automated Report Generation"]
+    L --> M["📄 Automated Report Generation"]
 
     M --> M1["01_eda.png"]
     M --> M2["02_seasonal.png"]
@@ -95,7 +94,7 @@ flowchart TD
     %% ─────────────────────────────────────────────
     %% FINAL OUTPUT
     %% ─────────────────────────────────────────────
-    M7 --> N[" Final Deliverable<br/>Automated Prediction & Calibration Framework"]
+    M7 --> N["✅ Final Deliverable<br/>Automated Prediction & Calibration Framework"]
 
     %% ─────────────────────────────────────────────
     %% STYLING
