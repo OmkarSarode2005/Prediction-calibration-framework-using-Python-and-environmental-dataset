@@ -3,62 +3,45 @@
 ## Next-Day Maximum Temperature Prediction for Bengaluru, India
 
 ## Workflow Diagram
-
 ```mermaid
 flowchart TD
 
-A["Bengaluru Weather Dataset
-1000 Days (May 2023 – Feb 2026)
-Variables: Tmax, Tmin, Tmean, Humidity, Precipitation, Wind"]
+%% =========================
+%% DATA COLLECTION & EDA
+%% =========================
+A["Bengaluru Weather Dataset<br/>1000 Days (May 2023 – Feb 2026)<br/>Tmax, Tmin, Tmean, Humidity,<br/>Precipitation, Wind"]
 
-A --> B["Data Ingestion
-Load CSV using pandas
-Parse dates and sort chronologically"]
+A --> B["Data Ingestion<br/>Load CSV with pandas<br/>Sort by date"]
 
-B --> C["Exploratory Data Analysis
-Temperature over time
-Daily precipitation
-Monthly boxplots
-Correlation matrix"]
+B --> C["Exploratory Data Analysis<br/>Temperature trends<br/>Precipitation analysis<br/>Correlation matrix"]
 
-C --> D["Seasonal Climate Analysis
-Monthly temperature range
-Rainfall vs humidity trends"]
+C --> D["Seasonal Climate Analysis<br/>Monthly temperature range<br/>Rainfall vs humidity"]
 
-D --> E["Feature Engineering
-19 Features Created"]
+%% =========================
+%% FEATURE ENGINEERING
+%% =========================
+D --> E["Feature Engineering<br/>19 Features Created"]
 
-E --> E1["Lag Features
-t-1 and t-2 values"]
+E --> E1["Lag Features<br/>t-1 and t-2 values"]
+E --> E2["Rolling Features<br/>7-day mean, std,<br/>cumulative rainfall"]
+E --> E3["Calendar Features<br/>Month, Day-of-Year,<br/>Monsoon Flag"]
 
-E --> E2["Rolling Features
-7-day mean, standard deviation
-Cumulative rainfall"]
+E --> F["Target Variable<br/>Next-Day Maximum Temperature"]
 
-E --> E3["Calendar Features
-Month, Day-of-Year
-Monsoon Flag"]
+%% =========================
+%% MODEL TRAINING
+%% =========================
+F --> G["Chronological Train/Test Split<br/>80% Train (794 rows)<br/>20% Test (199 rows)"]
 
-E --> F["Target Variable
-Next-Day Maximum Temperature"]
+G --> H["Baseline Model<br/>Random Forest Regressor"]
 
-F --> G["Chronological Train/Test Split
-80% Train (794 rows)
-20% Test (199 rows)"]
+H --> I["GridSearchCV Calibration<br/>24 Hyperparameter Combinations<br/>5-Fold Cross Validation"]
 
-G --> H["Baseline Model
-Random Forest Regressor"]
+I --> I1["Best Parameters<br/>n_estimators = 200<br/>max_depth = 20<br/>min_samples_split = 2<br/>max_features = sqrt"]
 
-H --> I["GridSearchCV Calibration
-24 Hyperparameter Combinations
-5-Fold Cross Validation"]
-
-I --> I1["Best Parameters
-n_estimators = 200
-max_depth = 20
-min_samples_split = 2
-max_features = sqrt"]
-
+%% =========================
+%% MODEL EVALUATION
+%% =========================
 I1 --> J["Model Evaluation"]
 
 J --> J1["RMSE ≈ 1.49°C"]
@@ -66,17 +49,21 @@ J --> J2["R² ≈ 0.664"]
 J --> J3["Actual vs Predicted Plot"]
 J --> J4["Scatter Plot"]
 
+%% =========================
+%% INTERPRETABILITY
+%% =========================
 J --> K["Feature Importance Analysis"]
 
-K --> K1["Top Predictors
-1. temp_roll7_mean
-2. temp_mean_C
-3. temp_mean_C_lag2"]
+K --> K1["Top Predictors<br/>1. temp_roll7_mean<br/>2. temp_mean_C<br/>3. temp_mean_C_lag2"]
 
-K --> L["BBMP Ward-Level Heat Map
-243 Bengaluru Wards
-Synthetic Spatial Gradient"]
+%% =========================
+%% SPATIAL VISUALIZATION
+%% =========================
+K --> L["BBMP Ward-Level Heat Map<br/>243 Bengaluru Wards<br/>Synthetic Spatial Gradient"]
 
+%% =========================
+%% OUTPUT GENERATION
+%% =========================
 L --> M["Automated Report Generation"]
 
 M --> M1["01_eda.png"]
@@ -85,10 +72,6 @@ M --> M3["03_prediction.png"]
 M --> M4["04_feature_importance.png"]
 M --> M5["05_bbmp_heatmap.png"]
 M --> M6["06_results_table.png"]
-M --> M7["Final PDF Report"]
-
-M7 --> N["Final Deliverable
-Automated Prediction & Calibration Framework"]
 ```
 
 This project presents an end-to-end machine learning pipeline for predicting the **next-day maximum temperature** in Bengaluru, Karnataka, using 1000 days of historical weather data.
