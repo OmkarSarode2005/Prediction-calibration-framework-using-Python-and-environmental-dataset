@@ -2,7 +2,6 @@
 # Automated Prediction & Calibration Framework
 ## Next-Day Maximum Temperature Prediction for Bengaluru, India
 
-## Worflow Diagram
 ## Workflow Diagram
 
 ```mermaid
